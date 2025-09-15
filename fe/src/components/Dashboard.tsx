@@ -128,9 +128,17 @@ const Dashboard: React.FC = () => {
 
 	return (
 		<div className="min-h-screen bg-white flex">
-			<Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
+			{/* Sidebar controls left margin via collapse callback */}
+			<Sidebar
+				activeTab={activeTab}
+				onTabChange={setActiveTab}
+				onCollapsedChange={(collapsed) => {
+					const root = document.documentElement;
+					root.style.setProperty("--sb-width", collapsed ? "3.5rem" : "14rem");
+				}}
+			/>
 
-			<div className="flex-1 ml-64">
+			<div className="flex-1" style={{ marginLeft: "var(--sb-width, 14rem)" }}>
 				<div className="p-6">
 					{activeTab === "dashboard" && (
 						<>

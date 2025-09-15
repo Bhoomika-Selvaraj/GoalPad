@@ -31,64 +31,64 @@ const AuthPage: React.FC = () => {
 	};
 
 	return (
-		<div className="min-h-screen grid place-items-center">
-			<div className="w-full max-w-md">
-				<h1 className="text-3xl font-bold text-center mb-2">
-					{isLogin ? "Login to your account" : "Create an account"}
+		<div className="min-h-screen grid place-items-center px-4">
+			<div className="w-full max-w-sm border border-neutral-200 rounded-2xl shadow-sm p-5 bg-white">
+				<h1 className="text-xl font-semibold text-center mb-1">
+					{isLogin ? "Welcome back" : "Create your account"}
 				</h1>
-				<p className="text-center text-black/60 mb-6">
-					Enter your {isLogin ? "credentials" : "details"} below
+				<p className="text-center text-black/60 mb-4 text-sm">
+					{isLogin ? "Sign in to continue" : "It takes less than a minute"}
 				</p>
 
-				<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+				<form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
 					{!isLogin && (
 						<input
 							{...register("name")}
 							type="text"
 							placeholder="Full name (optional)"
-							className="w-full border border-black rounded-lg px-3 py-2"
+							className="w-full border border-neutral-300 rounded-lg px-3 h-9 text-sm focus:outline-none focus:ring-2 focus:ring-black"
 						/>
 					)}
 					<input
 						{...register("username", { required: "Username is required" })}
 						type="text"
-						placeholder="m@example.com"
-						className="w-full border border-black rounded-lg px-3 py-2"
+						placeholder="Username"
+						className="w-full border border-neutral-300 rounded-lg px-3 h-9 text-sm focus:outline-none focus:ring-2 focus:ring-black"
 					/>
 					{!isLogin && (
 						<input
 							{...register("email", { required: "Email is required" })}
 							type="email"
 							placeholder="Email"
-							className="w-full border border-black rounded-lg px-3 py-2"
+							className="w-full border border-neutral-300 rounded-lg px-3 h-9 text-sm focus:outline-none focus:ring-2 focus:ring-black"
 						/>
 					)}
 					<input
 						{...register("password", { required: "Password is required" })}
 						type="password"
 						placeholder="Password"
-						className="w-full border border-black rounded-lg px-3 py-2"
+						className="w-full border border-neutral-300 rounded-lg px-3 h-9 text-sm focus:outline-none focus:ring-2 focus:ring-black"
 					/>
 
 					<button
 						type="submit"
-						className="w-full bg-black text-white rounded-lg py-2"
+						className="w-full bg-black text-white rounded-lg h-9 text-sm"
 					>
-						{isLogin ? "Login" : "Sign up"}
+						{isLogin ? "Sign in" : "Sign up"}
 					</button>
 				</form>
 
-				<div className="text-center mt-4">
+				<div className="text-center mt-3">
 					<button
 						onClick={() => {
 							setIsLogin(!isLogin);
 							reset();
 						}}
-						className="underline"
+						className="underline text-sm"
 					>
 						{isLogin
 							? "Don't have an account? Sign up"
-							: "Already have an account? Login"}
+							: "Already have an account? Sign in"}
 					</button>
 				</div>
 			</div>

@@ -31,8 +31,8 @@ export function Sidebar({
 		>
 			<div
 				className={cn(
-					"fixed left-0 top-0 h-full z-10 border-r border-gray-200 bg-gray-50 transition-all flex flex-col",
-					open ? "w-64" : "w-16",
+					"fixed left-0 top-0 h-full z-10 border-r border-neutral-200 bg-white transition-all flex flex-col",
+					open ? "w-56" : "w-14",
 					className
 				)}
 				{...props}
@@ -49,7 +49,7 @@ export function SidebarHeader({ children }: { children: React.ReactNode }) {
 
 export function SidebarContent({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="p-3 space-y-1.5 flex-1 overflow-y-auto">{children}</div>
+		<div className="p-2.5 space-y-1.5 flex-1 overflow-y-auto">{children}</div>
 	);
 }
 
@@ -57,17 +57,22 @@ export function SidebarItem({
 	active,
 	children,
 	onClick,
+	className,
 }: {
 	active?: boolean;
 	children: React.ReactNode;
 	onClick?: () => void;
+	className?: string;
 }) {
 	return (
 		<button
 			onClick={onClick}
 			className={cn(
-				"w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-left",
-				active ? "bg-black text-white" : "text-gray-900 hover:bg-gray-100"
+				"w-full flex items-center rounded-lg text-left",
+				active
+					? "bg-neutral-200 text-neutral-900"
+					: "text-neutral-900 hover:bg-neutral-100",
+				className
 			)}
 		>
 			{children}
