@@ -1,0 +1,66 @@
+.env
+.env.local
+
+# Node / Next.js
+node_modules/
+.next/
+.out/
+.next-static/
+.next-cache/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+.DS_Store
+.eslintcache
+
+# Frontend build artifacts
+fe/node_modules/
+fe/.next/
+fe/out/
+fe/.turbo/
+fe/.vercel/
+fe/.eslintcache
+fe/coverage/
+fe/*.log
+
+# Python / FastAPI / uv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache/
+.mypy_cache/
+.pytype/
+.venv/
+venv/
+be/.venv/
+be/.ruff_cache/
+be/.pytest_cache/
+be/.mypy_cache/
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Env & secrets
+be/.env
+be/.env.local
+fe/.env
+fe/.env.local
+
+# Misc
+*.sqlite3
+*.db
+**/*.sqlite
+
+# Uvicorn/uv
+be/.python-version
+be/uv.lock.backup
