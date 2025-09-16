@@ -10,6 +10,7 @@ import YouTubePlayer from "./YouTubePlayer";
 import QuizBomber from "./QuizBomber";
 import StickyNotes from "./StickyNotes";
 import Profile from "./Profile";
+import EditPlan from "./EditPlan";
 import { DashboardData, Task, RoadmapWeek } from "@/types";
 import { Checkbox } from "./ui/checkbox";
 
@@ -28,6 +29,13 @@ const Dashboard: React.FC = () => {
 		fetchDashboardData();
 	}, []);
 
+	// Initialize sidebar width variable so content margin responds immediately
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			document.documentElement.style.setProperty("--sb-width", "14rem");
+		}
+	}, []);
+
 	const fetchDashboardData = async () => {
 		try {
 			const response = await dashboardAPI.getDashboard();
@@ -43,6 +51,12 @@ const Dashboard: React.FC = () => {
 	const handleOnboardingComplete = () => {
 		setShowOnboarding(false);
 		fetchDashboardData();
+	};
+
+	const handlePlanSaved = () => {
+		// Refresh dashboard data after plan update
+		fetchDashboardData();
+		setActiveTab("dashboard");
 	};
 
 	const tasksByWeek: Record<number, Task[]> = useMemo(() => {
@@ -138,7 +152,13 @@ const Dashboard: React.FC = () => {
 				}}
 			/>
 
-			<div className="flex-1" style={{ marginLeft: "var(--sb-width, 14rem)" }}>
+			<div
+				className="flex-1"
+				style={{
+					marginLeft: "var(--sb-width, 14rem)",
+					transition: "margin-left 150ms ease",
+				}}
+			>
 				<div className="p-6">
 					{activeTab === "dashboard" && (
 						<>
@@ -325,6 +345,7 @@ const Dashboard: React.FC = () => {
 					{activeTab === "quiz" && <QuizBomber />}
 					{activeTab === "notes" && <StickyNotes />}
 					{activeTab === "profile" && <Profile />}
+					{activeTab === "edit-plan" && <EditPlan onSaved={handlePlanSaved} />}
 				</div>
 			</div>
 		</div>

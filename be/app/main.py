@@ -148,12 +148,15 @@ async def generate_roadmap(
         for task_data in week_data.tasks:
             if isinstance(task_data, dict):
                 title = task_data.get("description", "")
+                quadrant = task_data.get("quadrant") or "Q2"
             else:
                 title = getattr(task_data, "description", "")
+                quadrant = getattr(task_data, "quadrant", None) or "Q2"
 
             task = Task(
                 user_id=current_user.id,
                 title=title,
+                quadrant=quadrant,
                 week=week_data.week,
             )
             db.add(task)
